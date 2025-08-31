@@ -1,0 +1,230 @@
+<svg width="1200" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Cyberpunk gradient backgrounds -->
+    <linearGradient id="cyberpunkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#1a0033;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#001a33;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Neon text gradients -->
+    <linearGradient id="neonTitle" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#ff0080;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffff00;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#00ff41;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8000ff;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="equationGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff0080;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ffff;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Glowing filters -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="strongGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Circuit pattern -->
+    <pattern id="circuitPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="transparent"/>
+      <path d="M 0 20 L 10 20 L 10 10 L 30 10 L 30 30 L 40 30" stroke="#00ffff" stroke-width="0.5" fill="none" opacity="0.3">
+        <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/>
+      </path>
+      <circle cx="10" cy="20" r="1" fill="#ff0080" opacity="0.8">
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="30" cy="10" r="1" fill="#00ff41" opacity="0.8">
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+      </circle>
+    </pattern>
+
+    <!-- Grid pattern -->
+    <pattern id="cyberGrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,255,255,0.1)" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#cyberpunkBg)"/>
+
+  <!-- Grid overlay -->
+  <rect width="1200" height="400" fill="url(#cyberGrid)"/>
+
+  <!-- Circuit overlay -->
+  <rect width="1200" height="400" fill="url(#circuitPattern)" opacity="0.4"/>
+
+  <!-- Scan lines effect -->
+  <g opacity="0.1">
+    <rect x="0" y="0" width="1200" height="2" fill="#00ffff">
+      <animate attributeName="y" values="0;398;0" dur="8s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="0" y="100" width="1200" height="1" fill="#ff0080">
+      <animate attributeName="y" values="100;300;100" dur="6s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- Holographic particles -->
+  <g opacity="0.6">
+    <circle cx="150" cy="80" r="2" fill="#00ffff">
+      <animate attributeName="cy" values="80;50;80" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="350" cy="320" r="1.5" fill="#ff0080">
+      <animate attributeName="cx" values="350;400;350" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="900" cy="120" r="2.5" fill="#00ff41">
+      <animate attributeName="cy" values="120;90;120" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="2.5;4;2.5" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1100" cy="280" r="1" fill="#ffff00">
+      <animate attributeName="cx" values="1100;1050;1100" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Side decorative elements -->
+  <g transform="translate(50, 100)" opacity="0.8">
+    <!-- Left side circuit design -->
+    <path d="M 0 0 L 20 0 L 20 40 L 50 40 L 50 80 L 30 80 L 30 120" stroke="#00ffff" stroke-width="2" fill="none" filter="url(#neonGlow)">
+      <animate attributeName="stroke-dasharray" values="0,200;50,150;0,200" dur="6s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="0" cy="0" r="3" fill="#ff0080" filter="url(#neonGlow)">
+      <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="20" cy="40" r="2" fill="#00ff41" filter="url(#neonGlow)">
+      <animate attributeName="r" values="2;4;2" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="80" r="2.5" fill="#ffff00" filter="url(#neonGlow)">
+      <animate attributeName="r" values="2.5;4.5;2.5" dur="4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <g transform="translate(1100, 100)" opacity="0.8">
+    <!-- Right side circuit design -->
+    <path d="M 50 0 L 30 0 L 30 40 L 0 40 L 0 80 L 20 80 L 20 120" stroke="#ff0080" stroke-width="2" fill="none" filter="url(#neonGlow)">
+      <animate attributeName="stroke-dasharray" values="0,200;50,150;0,200" dur="5s" repeatCount="indefinite"/>
+    </path>
+    <circle cx="50" cy="0" r="3" fill="#00ffff" filter="url(#neonGlow)">
+      <animate attributeName="r" values="3;5;3" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="30" cy="40" r="2" fill="#8000ff" filter="url(#neonGlow)">
+      <animate attributeName="r" values="2;4;2" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Main title with glitch effect -->
+  <text x="600" y="110" text-anchor="middle" font-family="'Courier New', monospace" font-size="72" font-weight="bold" fill="url(#neonTitle)" filter="url(#strongGlow)">
+    TITIs
+    <animate attributeName="opacity" values="1;0.8;1;0.9;1" dur="0.1s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 1,0; -1,0; 0,0" dur="0.05s" repeatCount="indefinite" begin="0s"/>
+  </text>
+
+  <!-- Glitch overlay for title -->
+  <text x="602" y="110" text-anchor="middle" font-family="'Courier New', monospace" font-size="72" font-weight="bold" fill="#ff0080" opacity="0.3">
+    TITIs
+    <animate attributeName="opacity" values="0;0.3;0;0.1;0" dur="0.1s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="2,0; -2,0; 1,0; -1,0" dur="0.05s" repeatCount="indefinite" begin="0.02s"/>
+  </text>
+
+  <!-- Subtitle with typing effect -->
+  <text x="600" y="140" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" fill="#00ffff" opacity="0.9" filter="url(#neonGlow)">
+    Tool for Inference of Total Intensity of Internal Standard
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- Main equation box -->
+  <rect x="100" y="180" width="1000" height="70" rx="5" fill="rgba(0,0,0,0.7)" stroke="url(#equationGlow)" stroke-width="2">
+    <animate attributeName="stroke-width" values="2;3;2" dur="4s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Equation text -->
+  <text x="600" y="205" text-anchor="middle" font-family="'Courier New', monospace" font-size="18" fill="url(#equationGlow)" filter="url(#neonGlow)">
+    Matrix Effect = A × D^(-α) × (1 - exp(-β×C)) × sigmoid(γ×(logP - δ)) + ε
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+  </text>
+
+  <text x="600" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" opacity="0.8">
+    The Universal Equation That Revolutionized LC-MS/MS Analysis
+  </text>
+
+  <!-- Performance metrics with cyberpunk styling -->
+  <g transform="translate(150, 280)">
+    <!-- R² metric -->
+    <rect x="0" y="0" width="120" height="70" rx="5" fill="rgba(0,255,255,0.1)" stroke="#00ffff" stroke-width="1">
+      <animate attributeName="fill" values="rgba(0,255,255,0.1);rgba(0,255,255,0.3);rgba(0,255,255,0.1)" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <text x="60" y="20" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#00ffff" filter="url(#neonGlow)">R² PREDICTION</text>
+    <text x="60" y="40" text-anchor="middle" font-family="'Courier New', monospace" font-size="24" fill="#ffffff" font-weight="bold" filter="url(#neonGlow)">0.595</text>
+    <text x="60" y="55" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#00ffff">UNIVERSAL</text>
+
+    <!-- RMSE metric -->
+    <rect x="150" y="0" width="120" height="70" rx="5" fill="rgba(255,0,128,0.1)" stroke="#ff0080" stroke-width="1">
+      <animate attributeName="fill" values="rgba(255,0,128,0.1);rgba(255,0,128,0.3);rgba(255,0,128,0.1)" dur="4.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="210" y="20" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#ff0080" filter="url(#neonGlow)">RMSE ERROR</text>
+    <text x="210" y="40" text-anchor="middle" font-family="'Courier New', monospace" font-size="24" fill="#ffffff" font-weight="bold" filter="url(#neonGlow)">0.63%</text>
+    <text x="210" y="55" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ff0080">PRECISION</text>
+
+    <!-- Range metric -->
+    <rect x="300" y="0" width="120" height="70" rx="5" fill="rgba(0,255,65,0.1)" stroke="#00ff41" stroke-width="1">
+      <animate attributeName="fill" values="rgba(0,255,65,0.1);rgba(0,255,65,0.3);rgba(0,255,65,0.1)" dur="5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="360" y="20" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#00ff41" filter="url(#neonGlow)">DILUTION RANGE</text>
+    <text x="360" y="40" text-anchor="middle" font-family="'Courier New', monospace" font-size="20" fill="#ffffff" font-weight="bold" filter="url(#neonGlow)">1×-100K×</text>
+    <text x="360" y="55" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#00ff41">FACTOR</text>
+
+    <!-- Impact metric -->
+    <rect x="450" y="0" width="120" height="70" rx="5" fill="rgba(255,255,0,0.1)" stroke="#ffff00" stroke-width="1">
+      <animate attributeName="fill" values="rgba(255,255,0,0.1);rgba(255,255,0,0.3);rgba(255,255,0,0.1)" dur="3.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="510" y="20" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#ffff00" filter="url(#neonGlow)">TIME REDUCTION</text>
+    <text x="510" y="40" text-anchor="middle" font-family="'Courier New', monospace" font-size="24" fill="#ffffff" font-weight="bold" filter="url(#neonGlow)">-80%</text>
+    <text x="510" y="55" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#ffff00">EFFICIENCY</text>
+
+    <!-- Techniques metric -->
+    <rect x="600" y="0" width="120" height="70" rx="5" fill="rgba(128,0,255,0.1)" stroke="#8000ff" stroke-width="1">
+      <animate attributeName="fill" values="rgba(128,0,255,0.1);rgba(128,0,255,0.3);rgba(128,0,255,0.1)" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="660" y="20" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#8000ff" filter="url(#neonGlow)">TECHNIQUES</text>
+    <text x="660" y="40" text-anchor="middle" font-family="'Courier New', monospace" font-size="24" fill="#ffffff" font-weight="bold" filter="url(#neonGlow)">8+</text>
+    <text x="660" y="55" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#8000ff">METHODS</text>
+  </g>
+
+  <!-- Bottom tagline with glitch -->
+  <text x="600" y="380" text-anchor="middle" font-family="'Courier New', monospace" font-size="16" fill="url(#neonTitle)" font-weight="bold" filter="url(#strongGlow)">
+    [ ONE EQUATION TO RULE THEM ALL ]
+    <animate attributeName="opacity" values="0.8;1;0.8;1;0.9;1" dur="5s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- Data stream effects -->
+  <g opacity="0.3">
+    <text x="50" y="50" font-family="'Courier New', monospace" font-size="8" fill="#00ffff">
+      01001100 01000011 00101101 01001101 01010011
+      <animateTransform attributeName="transform" type="translate" values="0,0; 1150,0" dur="15s" repeatCount="indefinite"/>
+    </text>
+    <text x="50" y="370" font-family="'Courier New', monospace" font-size="8" fill="#ff0080">
+      01010100 01001001 01010100 01001001 01110011
+      <animateTransform attributeName="transform" type="translate" values="1200,0; -200,0" dur="12s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+</svg>
