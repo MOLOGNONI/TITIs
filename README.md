@@ -7,7 +7,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-00ff41.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-ff0080.svg)](https://www.python.org/downloads/)
 [![LC-MS/MS](https://img.shields.io/badge/LC--MS%2FMS-Compatible-00ffff.svg)](https://github.com/molognoni/TITIs)
-[![DOI](https://img.shields.io/badge/DOI-10.1016%2Fj.talanta.2024.125632-ffff00)](https://doi.org/10.1016/j.talanta.2024.125632)
 [![Build Status](https://img.shields.io/badge/build-passing-00ff41.svg)](https://github.com/molognoni/TITIs/actions)
 [![Coverage](https://img.shields.io/badge/coverage-94%25-00ff41.svg)](https://codecov.io/gh/molognoni/TITIs)
 
@@ -163,19 +162,6 @@ Contributions are welcome! Please:
 3. Commit your changes (`git commit -m 'Add feature X'`)
 4. Push to the branch (`git push origin feature/new-feature`)
 5. Open a Pull Request
-
-## Citation
-```
-@article{Molognoni2024,
-  title = {Tool for Inference of Total Intensity of Internal Standard (TITIs): Universal correction for matrix effects in LC-MS/MS diluted samples},
-  author = {Molognoni, L. and Hoff, R. and Daguer, H. and Vitali, L.},
-  journal = {Talanta},
-  year = {2024},
-  volume = {273},
-  pages = {125632},
-  doi = {10.1016/j.talanta.2024.125632}
-}
-```
 
 ## License
 
