@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO 21748 | CYBER LAB ANALYZER</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="particles" id="particles"></div>
+    <div class="pattern-indicator" id="patternIndicator"></div>
+
+    <header class="header">
+        <h1>ISO 21748 CYBER LAB ANALYZER</h1>
+        <div class="subtitle">Advanced Uncertainty Calculator • SNE Framework Enabled</div>
+    </header>
+
+    <div class="container">
+        <!-- Input Panel -->
+        <div class="panel sne-enhanced">
+            <h2 class="panel-title">🔬 DADOS EXPERIMENTAIS</h2>
+
+            <div class="input-group">
+                <label class="input-label">Repetibilidade (r)</label>
+                <input type="number" id="r_value" class="cyber-input" step="0.001" value="1.4" placeholder="Ex: 1.4">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Reprodutibilidade (R)</label>
+                <input type="number" id="R_value" class="cyber-input" step="0.001" value="4.2" placeholder="Ex: 4.2">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Desvio Padrão Intralaboratorial (sw)</label>
+                <input type="number" id="sw_value" class="cyber-input" step="0.001" value="0.4" placeholder="Ex: 0.4">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Bias Laboratorial (BL)</label>
+                <input type="number" id="BL_value" class="cyber-input" step="0.001" value="0.8" placeholder="Ex: 0.8">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Incerteza Adicional A (sa)</label>
+                <input type="number" id="sa_value" class="cyber-input" step="0.001" value="0.1" placeholder="Ex: 0.1">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Incerteza Adicional B (sb)</label>
+                <input type="number" id="sb_value" class="cyber-input" step="0.001" value="0.2" placeholder="Ex: 0.2">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Número de Replicatas (n)</label>
+                <input type="number" id="n_value" class="cyber-input" step="1" value="10" placeholder="Ex: 10">
+            </div>
+
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="cyber-button" onclick="calculateUncertainty()">
+                    🧮 CALCULAR INCERTEZA
+                </button>
+                <button class="cyber-button" onclick="clearInputs()">
+                    🗑️ LIMPAR
+                </button>
+                <button class="cyber-button" onclick="toggleSNEMode()">
+                    🧬 SNE MODE
+                </button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+                <div style="color: #00ffff;">Processando dados...</div>
+            </div>
+
+            <!-- SNE Status Display -->
+            <div id="sneStatus" style="margin-top: 15px; padding: 10px; background: rgba(255, 255, 0, 0.1); border-radius: 5px; display: none;">
+                <div style="color: #ffff00; font-size: 11px; text-align: center;">
+                    <div>🧬 SNE FRAMEWORK ATIVO</div>
+                    <div id="sneInfo" style="margin-top: 5px; color: #00ffff;">Detectando padrões...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Panel -->
+        <div class="panel sne-enhanced">
+            <h2 class="panel-title">📊 RESULTADOS ANÁLISE</h2>
+
+            <div class="results-grid" id="resultsGrid">
+                <div class="result-item">
+                    <div class="result-label">sr (Desvio Repetibilidade)</div>
+                    <div class="result-value" id="sr_result">-</div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">sR (Desvio Reprodutibilidade)</div>
+                    <div class="result-value" id="sR_result">-</div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">sL (Desvio Interlaboratorial)</div>
+                    <div class="result-value" id="sL_result">-</div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">sD (Desvio Experimental)</div>
+                    <div class="result-value" id="sD_result">-</div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">u' (Incerteza Provisória)</div>
+                    <div class="result-value" id="u_prime_result">-</div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">u (Incerteza Final)</div>
+                    <div class="result-value" id="u_result">-</div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">U (Incerteza Expandida)</div>
+                    <div class="result-value" id="U_result">-</div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-label">2sD (Limite Bias)</div>
+                    <div class="result-value" id="bias_limit_result">-</div>
+                </div>
+            </div>
+
+            <!-- Validation Status -->
+            <div style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.5); border-radius: 8px;">
+                <h3 style="color: #ffff00; margin-bottom: 10px;">STATUS VALIDAÇÃO</h3>
+                <div id="biasStatus" style="margin-bottom: 10px;">
+                    <span style="color: #00ffff;">Critério Bias:</span>
+                    <span id="biasStatusText">Não calculado</span>
+                    <span class="status-indicator" id="biasIndicator"></span>
+                </div>
+                <div id="precisionStatus">
+                    <span style="color: #00ffff;">Critério Precisão:</span>
+                    <span id="precisionStatusText">Não calculado</span>
+                    <span class="status-indicator" id="precisionIndicator"></span>
+                </div>
+            </div>
+
+            <!-- Export Panel -->
+            <div class="export-panel">
+                <h3 style="color: #ff0080; margin-bottom: 15px;">💾 EXPORTAR RESULTADOS</h3>
+                <button class="cyber-button" onclick="exportToCSV()">
+                    📄 EXPORT CSV
+                </button>
+                <button class="cyber-button" onclick="exportToJSON()">
+                    🔧 EXPORT JSON
+                </button>
+                <button class="cyber-button" onclick="generateReport()">
+                    📋 RELATÓRIO
+                </button>
+                <button class="cyber-button" onclick="exportSNEData()">
+                    🧬 SNE DATA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>

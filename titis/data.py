@@ -1,28 +1,10 @@
 import numpy as np
 import pandas as pd
 
-
 def generate_titis_experimental_data():
     """
-    Generates a realistic, simulated dataset for TITIs analysis.
-
-    This function creates a pandas DataFrame of experimental results and another
-    DataFrame of molecular properties. The data is designed to mimic real-world
-    LC-MS/MS experiments, incorporating variability from extraction techniques,
-    instrumental parameters, and the physicochemical properties of different
-    compounds.
-
-    The simulation is based on a complex, multi-factorial model to ensure
-    the data is suitable for advanced statistical analysis like MANOVA and
-    Canonical Correlation.
-
-    Returns:
-        tuple[pd.DataFrame, pd.DataFrame]: A tuple containing:
-            - experimental_df (pd.DataFrame): DataFrame with simulated
-              experimental runs. Columns include 'technique', 'dilution_factor',
-              'matrix_effect', 'recovery', etc.
-            - molecular_properties_df (pd.DataFrame): DataFrame with the
-              physicochemical properties of the simulated compounds.
+    Generates experimental data based on the TITIs framework.
+    Includes extraction techniques, molecular properties, and instrumental effects.
     """
     np.random.seed(42)
     n_compounds = 100
@@ -79,18 +61,14 @@ def generate_titis_experimental_data():
         temp_effect = (capillary_temp - 300) / 100 * 3
 
         # Final matrix effect
-        matrix_effect = (
-            base_me + logp_effect + dilution_effect +
-            voltage_effect + temp_effect +
-            np.random.normal(0, tech_params['variability'] * 20)
-        )
+        matrix_effect = (base_me + logp_effect + dilution_effect +
+                        voltage_effect + temp_effect +
+                        np.random.normal(0, tech_params['variability'] * 20))
 
         # Recovery based on properties
-        recovery = (
-            tech_params['recovery'] -
-            abs(mol_props['log_p'] - 2.5) * 0.05 +
-            np.random.normal(0, 0.05)
-        )
+        recovery = (tech_params['recovery'] -
+                   abs(mol_props['log_p'] - 2.5) * 0.05 +
+                   np.random.normal(0, 0.05))
         recovery = np.clip(recovery, 0.5, 1.0)
 
         # Internal standard response

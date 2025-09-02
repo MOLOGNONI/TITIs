@@ -1,21 +1,19 @@
 import sys
 import os
+import matplotlib.pyplot as plt
 
-# Add the root directory to the Python path
+# Add the root directory to the Python path to allow for local execution
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from titis.data.generation import generate_titis_experimental_data
-from titis.analysis.statistics import (
-    set_professional_style,
+from titis.data import generate_titis_experimental_data
+from titis.analysis import (
     analyze_variable_dependencies,
     perform_manova_analysis,
     canonical_correlation_analysis,
     discriminant_analysis
 )
-from titis.visualization.plotting import (
-    advanced_visualizations,
-    generate_insights
-)
+from titis.plotting import advanced_visualizations
+from titis.insights import generate_insights
 
 
 def main():
@@ -26,8 +24,8 @@ def main():
     print("TITIs ADVANCED STATISTICAL ANALYSIS")
     print("=" * 60)
 
-    # Set the plot style
-    set_professional_style()
+    # Set professional plot style
+    plt.style.use('default')
 
     # 1. Generate data
     print("\nGenerating experimental data...")
